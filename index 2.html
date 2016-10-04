@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		/*
+		Below is a basic Point of Sale system that we might
+		see in a shop or restaurant. Some of the functions
+		aren't yet complete. Your job is to complete them
+		so we can sell items to customers!
+		*/
+
+		/*
+		First, let's set up some demo data for us
+		to use for testing
+		*/
+		var inventory = [
+			{
+				name: "Gumball",
+				price: 25,
+				quantity: 30,
+				id: 12333
+			},
+			{
+				name: "Chocolate Bar",
+				price: 100,
+				quantity: 40,
+				id: 34223
+			},
+			{
+				name: "Fancy Chocolate Bar",
+				price: 300,
+				quantity: 10,
+				id: 8932
+			}
+		];
+
+		var customers = [
+			{
+				name: "erty",
+				cart: [
+					12333,
+					12333,
+					34223
+				]
+			},
+			{
+				name: "sarah",
+				cart: [
+					8932,
+					12333
+				]
+			}
+		];
+
+		var totalMoneyMade = 32923;
+
+		/*
+			Todo: Complete the following functions
+		*/
+
+		function getItemByID(itemID) {
+
+			// go through each item in the inventory
+			for (var item of inventory) {
+				// if that item's id is itemID, return the item
+				if (item.id === itemID) {
+					return item;
+				}
+			}
+		}
+		var testItem = getItemByID(12333);
+		console.log(testItem.name);
+
+		function getSubTotalForCustomer(customerObj) {
+			// todo: take in a reference to a customer object
+			// and return the total price of all the items
+			// in their cart
+			var cartArr = customerObj.cart; //made this so we don't have type so much
+			var total = 0; 
+			//go through each item in the inventory
+			for (var i = 0; i < cartArr.length; i++) {
+				//if that item is a customer
+				var item = getItemByID(cartArr[i]);
+				total = total + item.price;
+			}
+			return total;
+		}
+
+		testItem = getSubTotalForCustomer(customers[0]);
+		console.log(testItem);
+
+		function markItemSold(itemObj) {
+			// todo: take in an item reference, and update
+			// the new quantity of that item
+			//if there's an item in a customer's cart than subtract 1 from 
+			
+			for (var i = 0; i < customers.length; i++) {
+				var customer = customers[i];
+				var cartArr = customer.cart;
+				for (var j = 0; j < cartArr.length; j++) {
+					var item = getItemByID(cartArr[j]);
+					if (item == itemObj) {
+					item.quantity--
+				};
+			}
+		}
+	}
+		console.log(inventory);
+		markItemSold(inventory[0]);
+
+
+		function checkOutCustomer(customerObj) {
+			//todo: take in a customer object, compute the total
+			// cost of the things in their cart, add that to the
+			// totalMoneyMade, update our inventory,
+			// and empty that customer's cart
+
+			//get subtotal for customer (already have it)
+			//add to total money made
+			//\
+		}
+
+		function createNewCustomer(name) {
+			// todo: add a new customer to the system
+			// with an empty cart and name provided
+			// return a reference to that customer
+		}
+
+		function createNewItem(name, price, id) {
+			// todo: add a new item to the system with
+			// the name, price, and id provided
+			// return a reference to that item
+		}
+
+
+	</script>
+</body>
+</html>
